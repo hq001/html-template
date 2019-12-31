@@ -5,11 +5,16 @@ import { trim } from "./units"
 
 type Script = string[] | string
 
-class Render {
+export interface RenderType {
+  set(html: string): void
+  render(template?: string): string
+}
+
+export class Render implements RenderType{
   private html: string | undefined
   private option: Object | undefined
 
-  constructor(option: Object | undefined) {
+  constructor(option?: Object) {
     this.option = option
   }
 
@@ -17,11 +22,12 @@ class Render {
     this.html = html
   }
 
-  render(): string | void {
-    const html = this.html
+  render(template?: string): string {
+    const html = template || this.html
 
     if (typeof html === 'undefined') {
-      return console.warn('render function error: not find html template')
+      console.warn('render function error: not find html template')
+      return ''
     }
     let output: string = ''
     let startScript: boolean = false
@@ -55,5 +61,3 @@ class Render {
   }
 
 }
-
-export default Render
