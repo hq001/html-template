@@ -1,9 +1,12 @@
 /**
  * 核心渲染类
  */
-import { trim } from "./units"
+import { line, trim } from "./units"
 
 type Script = string[] | string
+interface Options {
+  mini: boolean
+}
 
 export interface RenderType {
   set(html: string): void
@@ -12,10 +15,14 @@ export interface RenderType {
 
 export class Render implements RenderType{
   private html: string | undefined
-  private option: Object | undefined
+  private options: Options
 
-  constructor(option?: Object) {
-    this.option = option
+  constructor(
+    options: Options = {
+      mini: false
+    }
+  ) {
+    this.options = options
   }
 
   set(html: string) {
@@ -41,7 +48,7 @@ export class Render implements RenderType{
         startScript = false
         ++i
         try {
-          const grammar = new Function('return ' + tempScript.replace(trim, ''))
+          const grammar = new Function('return ' + tempScript.replace(line, ''))
           output += grammar()
         } catch (e) {
           console.error(e)
@@ -55,7 +62,7 @@ export class Render implements RenderType{
       }
     }
 
-    return output
+    return this.options.mini ? output.replace(trim, '') : output
   }
 
 }

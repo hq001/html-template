@@ -30,9 +30,9 @@ Use **new Render (options?: object)** for initialization and return an instance 
 
 ### options
 
-+
++ `mini`: Whether to compress `html` content
 
 ### API
 
-+ `set (html: string)`, set the template string to be rendered
-+ `render (template?: string)`, render template string and return
++ `set (html: string)`: set the template string to be rendered
++ `render (template?: string)`: render template string and return
