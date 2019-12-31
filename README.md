@@ -17,7 +17,8 @@ or
 ## Usage
 
 ```javascript
-import { Render } from "@linkorgs/html-template"
+import { Render } from "@linkorgs/html-template"                    // ESModule
+// const { Render } = require("@linkorgs/html-template")            // commonjs 
 const render = new Render()
 render.render(`<div>{{ null || '@linkorgs/html-template' }}</div>`)
 // output: <div>@linkorgs/html-template</div>
