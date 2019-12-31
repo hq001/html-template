@@ -1,5 +1,5 @@
 {
-  "name": "html-template",
+  "name": "@linkorgs/html-template",
   "version": "1.0.0",
   "description": "simple html template engine",
   "main": "lib/index.js",
@@ -12,8 +12,14 @@
     "type": "git",
     "url": "git+https://github.com/Linkontoask/html-template.git"
   },
+  "files": [
+    "lib",
+    "test",
+    "index.d.ts",
+    "LICENSE"
+  ],
   "author": "Link",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Linkontoask/html-template/issues"
   },
