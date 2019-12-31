@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://linkorg.club/www/html-template/logo.png" alt="html-template">
+</p>
+
 # html-template
 
 The simplest `html` template engine
