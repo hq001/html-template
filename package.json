@@ -1,12 +1,12 @@
 {
   "name": "@linkorgs/html-template",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "simple html template engine",
   "main": "lib/index.js",
   "types": "index.d.ts",
   "scripts": {
     "build": "rimraf lib/**/*.js && tsc",
-    "test": "mocha -r ./node_modules/ts-node/register ./test/**/*.ts"
+    "test": "npm run build && mocha -r ./node_modules/ts-node/register ./test/**/*.ts"
   },
   "repository": {
     "type": "git",

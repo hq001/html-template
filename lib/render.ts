@@ -36,9 +36,10 @@ export class Render implements RenderType{
       const item = html[i], itemNext = html[i + 1]
       if (item === '{' && itemNext === '{') {
         startScript = true
-      }
-      if (item === '}' && itemNext === '}') {
+        ++i
+      } else if (item === '}' && itemNext === '}') {
         startScript = false
+        ++i
         try {
           const grammar = new Function('return ' + tempScript.replace(trim, ''))
           output += grammar()
@@ -47,12 +48,9 @@ export class Render implements RenderType{
         } finally {
           tempScript = ''
         }
-      }
-      if (item === '{' || item === '}') {
-
       } else if (startScript) {
         tempScript += item
-      } else if (item !== '{' && item !== '}') {
+      } else {
         output += item
       }
     }
