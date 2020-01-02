@@ -1,6 +1,6 @@
 {
   "name": "@linkorgs/html-template",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "simple html template engine",
   "main": "lib/index.js",
   "types": "index.d.ts",
