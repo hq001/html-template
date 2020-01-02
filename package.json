@@ -15,7 +15,6 @@
   "files": [
     "lib",
     "test",
-    "index.d.ts",
     "LICENSE"
   ],
   "author": "Link",
