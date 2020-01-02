@@ -45,13 +45,13 @@ describe('Render Class', () => {
     
       <div>
       
-      {{ 0 | 1 }}
+      {{ 0 | 1 }}{{ 2 }}
       
       </div><div>2</div>
     
     `)
 
-    expect(html).to.equal('<div>1</div><div>2</div>')
+    expect(html).to.equal('<div>12</div><div>2</div>')
   })
 });
 
