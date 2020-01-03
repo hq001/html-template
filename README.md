@@ -61,3 +61,11 @@ Use **new Render (options?: object)** for initialization and return an instance 
 + `set (html: string)`: set the template string to be rendered
 + `compiler (template?: string)`: Returns a prepared array of templates for the `render` function to compile
 + `render (template?: string)`: render template string and return
+
+### Changelog
+
+Detailed changes for each release are documented in the [release notes](CHANGELOG.md).
+
+### LICENSE
+
+[MIT](LICENSE)
