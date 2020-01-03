@@ -20,8 +20,30 @@ or
 import { Render } from "@linkorgs/html-template"                    // ESModule
 // const { Render } = require("@linkorgs/html-template")            // commonjs 
 const render = new Render()
-render.render(`<div>{{ null || '@linkorgs/html-template' }}</div>`)
+render.render(`<div>{{ return null || '@linkorgs/html-template' }}</div>`)
 // output: <div>@linkorgs/html-template</div>
+```
+
+`2.0.1` starts to support asynchronous syntax, the basic usage is as follows
+
+```javascript
+import { Render } from "@linkorgs/html-template"
+const render = new Render({
+  mini: true
+})
+
+void async function() {
+  await render.render(`
+    <div>
+      {{
+        return (async function() {
+          return await Promise.resolve('@linkorgs/html-template')
+        })();
+      }}
+    </div>
+`)
+  // output: <div>@linkorgs/html-template</div>
+}()
 ```
 
 ## Documentation
@@ -35,4 +57,5 @@ Use **new Render (options?: object)** for initialization and return an instance 
 ### API
 
 + `set (html: string)`: set the template string to be rendered
++ `compiler (template?: string)`: Returns a prepared array of templates for the `render` function to compile
 + `render (template?: string)`: render template string and return
