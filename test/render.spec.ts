@@ -8,10 +8,13 @@ describe('Render Class', () => {
     const render = new Render()
     render.set(`
       <div>{{
-        [1,2,3].map(item => '<h' + item + '>' + item + '</h' + item + '>').join('')
+        return [1,2,3].map(item => '<h' + item + '>' + item + '</h' + item + '>').join('')
       }}</div>
     `)
-    let html = render.render().replace(trim, '')
+    let html = render.render()
+    if (typeof html === 'string') {
+      html = html.replace(trim, '')
+    }
     expect(html).to.equal('<div><h1>1</h1><h2>2</h2><h3>3</h3></div>')
   });
 
@@ -19,21 +22,27 @@ describe('Render Class', () => {
     const render = new Render()
     let html = render.render(`
       <div>{{
-        [1,2,3].map(item => '<h' + item + '>' + item + '</h' + item + '>').join('')
+        return [1,2,3].map(item => '<h' + item + '>' + item + '</h' + item + '>').join('')
       }}</div>
-    `).replace(trim, '')
+    `)
+    if (typeof html === 'string') {
+      html = html.replace(trim, '')
+    }
     expect(html).to.equal('<div><h1>1</h1><h2>2</h2><h3>3</h3></div>')
   })
 
   it('should render "{" or "}"', () => {
     const render = new Render()
-    const html = render.render(`<div>{{ null || '{@linkorgs/html-template}' }}</div>`)
+    const html = render.render(`<div>{{ return null || '{@linkorgs/html-template}' }}</div>`)
     expect(html).to.equal('<div>{@linkorgs/html-template}</div>')
-    const html1 = render.render(`<div>{{   
-      [1,2].map(item => {
+    let html1 = render.render(`<div>{{   
+      return [1,2].map(item => {
         return item
       }).join('')       
-    }}</div>`).replace(trim, '')
+    }}</div>`)
+    if (typeof html1 === 'string') {
+      html1 = html1.replace(trim, '')
+    }
     expect(html1).to.equal('<div>12</div>')
   })
 
@@ -45,13 +54,32 @@ describe('Render Class', () => {
     
       <div>
       
-      {{ 0 | 1 }}{{ 2 }}
+      {{ return 0 | 1 }}{{ return 2 }}
       
       </div><div>2</div>
     
     `)
 
     expect(html).to.equal('<div>12</div><div>2</div>')
+  })
+
+  it('should be asynchronous syntax', async () => {
+    const render = new Render({
+      mini: true
+    })
+    const html = await render.render(`
+    
+      <div>
+      {{ 
+        return (async function() {
+          return await Promise.resolve(1)
+        })();
+      }}
+      </div>
+    
+    `)
+
+    expect(html).to.equal('<div>1</div>')
   })
 });
 
