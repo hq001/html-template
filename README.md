@@ -2,6 +2,8 @@
   <img src="https://linkorg.club/www/html-template/logo.png" alt="html-template">
 </p>
 
+[![Build Status](https://travis-ci.com/Linkontoask/html-template.svg?branch=master)](https://travis-ci.com/Linkontoask/html-template)
+
 # html-template
 
 The simplest `html` template engine
