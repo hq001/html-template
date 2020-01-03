@@ -1,10 +1,11 @@
-## 2.0.1 (2020-01-03)
+## 2.0.2 (2020-01-03)
 
 
 ### Bug Fixes
 
 * package name ([a320baf](https://github.com/Linkontoask/html-template/commit/a320baf693ef36239ee58e38df6ac540d570975b))
 * support javascript => {} ([b4baede](https://github.com/Linkontoask/html-template/commit/b4baedef3f4bb681dba9c3d82079d42676c4fd94))
+* supports compiler function to ide ([b38ec23](https://github.com/Linkontoask/html-template/commit/b38ec234259d180a428c95f083277b35a93372e6))
 
 
 ### Features
