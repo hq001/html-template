@@ -17,7 +17,7 @@ export interface RenderType {
   compiler(template: string): any[]
 }
 
-export class Render implements RenderType{
+export class Render implements RenderType {
   private html: string | undefined
   private readonly options: Options
 
