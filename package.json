@@ -1,6 +1,6 @@
 {
   "name": "@linkorgs/html-template",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "simple html template engine",
   "main": "lib/index.js",
   "types": "index.d.ts",
@@ -16,7 +16,8 @@
   "files": [
     "lib",
     "test",
-    "LICENSE"
+    "LICENSE",
+    "index.d.ts"
   ],
   "husky": {
     "hooks": {
