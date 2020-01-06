@@ -46,6 +46,12 @@ describe('Render Class', () => {
     expect(html1).to.equal('<div>12</div>')
   })
 
+  it('should support translate "<" ">" "&" """ ', () => {
+    const render = new Render()
+    const html = render.render(`<div>{{ return null || '<&">' }}</div>`)
+    expect(html).to.equal('<div><&"></div>')
+  })
+
   it('should options mini', () => {
     const render = new Render({
       mini: true

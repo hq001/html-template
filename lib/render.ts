@@ -2,7 +2,7 @@
  * Core rendering class
  * Belong to @Link
  */
-import { line, trim, match, isString, isFunction } from "./units"
+import { line, trim, match, isString, isFunction, translateCode } from "./units"
 
 type Script = string[] | string
 type Match = any[]
@@ -101,9 +101,15 @@ export class Render implements RenderType {
       const index: any = matchString.index
       const script: Script = matchString[1]
       const scriptBlock: Script = matchString[0]
+      // @ts-ignore
+      const js: any = script.replace(/&(lt|gt|nbsp|amp|quot);/ig, (key) => translateCode[key])
 
       index !== 0 && matchArray.push(tp.slice(0, index))
-      matchArray.push(new Function(script))
+      try {
+        matchArray.push(new Function(js))
+      } catch (e) {
+        console.error(js, e)
+      }
 
       tp = tp.substring(index + scriptBlock.length)
       matchString = match.exec(tp)
