@@ -5,6 +5,13 @@ export const trim: RegExp = /(\s|\n|\\s)/g
 
 export const match: RegExp = /{{(.+?)}}/g
 
+export const translateCode: object = {
+  '&gt;': '>',
+  '&lt;': '<',
+  '&amp;': '&',
+  '&quot;': '"'
+}
+
 export const map: string[] = [
   '[object Array]',
   '[object Object]',

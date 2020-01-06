@@ -1,0 +1,28 @@
+<script src="../lib/index.global.js"></script>
+
+<div id="template" style="display: none">
+  <h1 class="abc">
+    {{
+      return fetch('/rec_static_/link.json').then(res => res.json()).then(data => {
+          const footer = data.footer;
+          return footer.map(item => {
+            return '<li><a href="'+ item.link +'">'+ item.name +'</a></li>'
+          }).join('')
+        })
+    }}
+  </h1>
+</div>
+
+<script>
+  const template = document.querySelector('#template')
+  const templateHTML = template.innerHTML
+
+  const render = new RENDER.Render({
+    mini: false
+  })
+
+  render.render(templateHTML).then(v => {
+    template.innerHTML = v
+    template.style.display = 'block'
+  })
+</script>
