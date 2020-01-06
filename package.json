@@ -1,8 +1,10 @@
 {
   "name": "@linkorgs/html-template",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "simple html template engine",
-  "main": "lib/index.js",
+  "main": "lib/index.cjs.js",
+  "browser": "lib/index.global.js",
+  "module": "lib/index.esm.js",
   "types": "index.d.ts",
   "scripts": {
     "dev": "node serve.js",
