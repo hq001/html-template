@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "node serve.js",
     "build": "rimraf lib/**/*.js && rollup -c",
-    "test": "mocha -r ./node_modules/ts-node/register ./test/**/*.ts",
+    "test": "mocha -r ./node_modules/ts-node/register ./test/**/*.spec.ts",
     "change:log": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "repository": {
