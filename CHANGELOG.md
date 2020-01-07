@@ -1,8 +1,9 @@
-## 2.1.1 (2020-01-06)
+# 2.2.0 (2020-01-07)
 
 
 ### Bug Fixes
 
+* mini functions are implemented using html-minifier-terser ([006aaf4](https://github.com/Linkontoask/html-template/commit/006aaf447d099a5af4d0ce24bd694d706255f0e8))
 * not entry file ([0bb07bf](https://github.com/Linkontoask/html-template/commit/0bb07bf0f18712dc34355d9fe72ffd384553e542))
 * package name ([a320baf](https://github.com/Linkontoask/html-template/commit/a320baf693ef36239ee58e38df6ac540d570975b))
 * support ide types ([5991ba3](https://github.com/Linkontoask/html-template/commit/5991ba3e18c96560f9396ef30edcf6823157c592))
