@@ -1,14 +1,17 @@
+/// <reference path="node.d.ts"/>
+
 /**
  * Core rendering class
  * Belong to @Link
  */
-import { line, trim, match, isString, isFunction, translateCode } from "./units"
+import {line, trim, match, isString, isFunction, isBoolean, translateCode, isObject} from "./units"
+import {minify, MiniOptions} from "html-minifier-terser"
 
 type Script = string[] | string
 type Match = any[]
 
 interface Options {
-  mini: boolean
+  mini: boolean | MiniOptions
 }
 
 export interface RenderType {
@@ -23,7 +26,7 @@ export class Render implements RenderType {
 
   constructor(
     options: Options = {
-      mini: false
+      mini: true
     }
   ) {
     this.options = options
@@ -35,7 +38,24 @@ export class Render implements RenderType {
 
   output(html: string): string {
     const { mini } = this.options
-    return mini ? html.replace(trim, ''): html
+
+    let option: MiniOptions = {
+      collapseWhitespace: true,
+      removeComments: true,
+      removeRedundantAttributes: true,
+      removeScriptTypeAttributes: true,
+      removeStyleLinkTypeAttributes: true,
+      useShortDoctype: true
+    }
+    if (isBoolean(mini) && !mini) {
+      return html
+    }
+
+    if (isObject(mini) && typeof mini === 'object') {
+      option = mini
+    }
+
+    return minify(html, option)
   }
 
   render(template?: string): Promise<string> | string {

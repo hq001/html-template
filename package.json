@@ -1,6 +1,6 @@
 {
   "name": "@linkorgs/html-template",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "simple html template engine",
   "main": "lib/index.cjs.js",
   "browser": "lib/index.global.js",
@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "node serve.js",
     "build": "rimraf lib/**/*.js && rollup -c",
-    "test": "mocha -r ./node_modules/ts-node/register ./test/**/*.ts",
+    "test": "mocha -r ./node_modules/ts-node/register ./test/**/*.spec.ts",
     "change:log": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "repository": {
@@ -40,6 +40,7 @@
     "chai": "^4.2.0",
     "conventional-changelog-cli": "^2.0.31",
     "express": "^4.17.1",
+    "html-minifier-terser": "^5.0.2",
     "husky": "^3.1.0",
     "mocha": "^6.2.2",
     "request": "^2.88.0",

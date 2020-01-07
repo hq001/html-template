@@ -1,6 +1,5 @@
 import { Render } from '../lib'
 import { expect } from 'chai'
-import { trim } from '../lib/units'
 import 'mocha'
 
 describe('Render Class', () => {
@@ -12,9 +11,6 @@ describe('Render Class', () => {
       }}</div>
     `)
     let html = render.render()
-    if (typeof html === 'string') {
-      html = html.replace(trim, '')
-    }
     expect(html).to.equal('<div><h1>1</h1><h2>2</h2><h3>3</h3></div>')
   });
 
@@ -25,9 +21,6 @@ describe('Render Class', () => {
         return [1,2,3].map(item => '<h' + item + '>' + item + '</h' + item + '>').join('')
       }}</div>
     `)
-    if (typeof html === 'string') {
-      html = html.replace(trim, '')
-    }
     expect(html).to.equal('<div><h1>1</h1><h2>2</h2><h3>3</h3></div>')
   })
 
@@ -40,16 +33,13 @@ describe('Render Class', () => {
         return item
       }).join('')       
     }}</div>`)
-    if (typeof html1 === 'string') {
-      html1 = html1.replace(trim, '')
-    }
     expect(html1).to.equal('<div>12</div>')
   })
 
   it('should support translate "<" ">" "&" """ ', () => {
-    const render = new Render()
-    const html = render.render(`<div>{{ return null || '<&">' }}</div>`)
-    expect(html).to.equal('<div><&"></div>')
+    const render = new Render({mini: false})
+    const html = render.render(`<div>{{ return null || '><&"' }}</div>`)
+    expect(html).to.equal('<div>><&"</div>')
   })
 
   it('should options mini', () => {
