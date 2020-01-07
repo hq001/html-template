@@ -30,3 +30,11 @@ export function isString(target: any): boolean {
 export function isFunction(target: any): boolean {
   return Object.prototype.toString.call(target) === '[object Function]'
 }
+
+export function isBoolean(target: any): boolean {
+  return Object.prototype.toString.call(target) === '[object Boolean]'
+}
+
+export function isObject(target: any): boolean {
+  return Object.prototype.toString.call(target) === '[object Object]'
+}
