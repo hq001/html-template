@@ -1,6 +1,6 @@
 {
   "name": "@linkorgs/html-template",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "simple html template engine",
   "main": "lib/index.cjs.js",
   "browser": "lib/index.global.js",
