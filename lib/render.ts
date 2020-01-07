@@ -5,13 +5,13 @@
  * Belong to @Link
  */
 import {line, trim, match, isString, isFunction, isBoolean, translateCode, isObject} from "./units"
-import {minify, MiniOptions} from "html-minifier-terser"
+import * as minifier from "html-minifier"
 
 type Script = string[] | string
 type Match = any[]
 
 interface Options {
-  mini: boolean | MiniOptions
+  mini: boolean | minifier.Options
 }
 
 export interface RenderType {
@@ -39,7 +39,7 @@ export class Render implements RenderType {
   output(html: string): string {
     const { mini } = this.options
 
-    let option: MiniOptions = {
+    let option: minifier.Options = {
       collapseWhitespace: true,
       removeComments: true,
       removeRedundantAttributes: true,
@@ -55,7 +55,7 @@ export class Render implements RenderType {
       option = mini
     }
 
-    return minify(html, option)
+    return minifier.minify(html, option)
   }
 
   render(template?: string): Promise<string> | string {

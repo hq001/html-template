@@ -54,7 +54,7 @@ Use **new Render (options?: object)** for initialization and return an instance 
 
 ### options
 
-+ `mini`: Whether to compress `html` content. As with the `minify` attribute of` html-webpack-plugin`, use `html-minifier-terser` to compress HTML content. See [List](https://github.com/DanielRuf/html-minifier-terser#options-quick-reference) for optional values. The default values are as follows
++ `mini`: Whether to compress `html` content. As with the `minify` attribute of` html-webpack-plugin`, use `html-minifier` to compress HTML content. See [List](https://github.com/kangax/html-minifier#options-quick-reference) for optional values. The default values are as follows
 ```javascript
 {
   collapseWhitespace: true,
