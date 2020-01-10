@@ -8,6 +8,7 @@ export const match: RegExp = /{{(.+?)}}/g
 export const translateCode: object = {
   '&gt;': '>',
   '&lt;': '<',
+  '&nbsp;': ' ',
   '&amp;': '&',
   '&quot;': '"'
 }
