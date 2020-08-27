@@ -1,8 +1,8 @@
-import { RenderType } from "./lib/render"
+import { RenderType, Match } from "./lib/render"
 
 export declare class Render implements RenderType{
   constructor(option?: object)
   set(html: string): void
   render(template?: string): string
-  compiler(template: string): any[]
+  compiler(template: string): Match
 }
