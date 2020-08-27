@@ -4,11 +4,13 @@
  * Core rendering class
  * Belong to @Link
  */
-import {line, trim, match, isString, isFunction, isBoolean, translateCode, isObject} from "./units"
+import {line, match, isString, isFunction, isBoolean, translateCode, isObject} from "./units"
 import * as minifier from "html-minifier"
 
+
+type MatchItem = string | Function
 type Script = string[] | string
-type Match = any[]
+export type Match = MatchItem[]
 
 interface Options {
   mini: boolean | minifier.Options
@@ -17,7 +19,7 @@ interface Options {
 export interface RenderType {
   set(html: string): void
   render(template: string): Promise<string> | string
-  compiler(template: string): any[]
+  compiler(template: string): Match
 }
 
 export class Render implements RenderType {
@@ -61,11 +63,8 @@ export class Render implements RenderType {
   render(template?: string): Promise<string> | string {
 
     const tp = template || this.html
-    if (typeof tp === 'undefined') {
-      return ''
-    }
 
-    const matchArray = this.compiler(tp)
+    const matchArray = this.compiler(<string>tp)
     const placeholder: string = '!%'
 
     let output: string = ''
@@ -79,7 +78,7 @@ export class Render implements RenderType {
       }
       if (isFunction(item)) {
         try {
-          const cb = item()
+          const cb: Promise<any> | string = (item as Function)()
           if (cb instanceof Promise) {
             sync = true
             syncArray.push(cb)
@@ -121,8 +120,8 @@ export class Render implements RenderType {
       const index: any = matchString.index
       const script: Script = matchString[1]
       const scriptBlock: Script = matchString[0]
-      // @ts-ignore
-      const js: any = script.replace(/&(lt|gt|nbsp|amp|quot);/ig, (key) => translateCode[key])
+
+      const js: string = script.replace(/&(lt|gt|nbsp|amp|quot);/ig, (key) => (translateCode as any)[key])
 
       index !== 0 && matchArray.push(tp.slice(0, index))
       try {
